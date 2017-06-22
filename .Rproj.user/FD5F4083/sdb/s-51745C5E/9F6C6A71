@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#Reconocer texto en español\nSys.setlocale(\"LC_ALL\", \"ES_ES.UTF-8\")\n\n#Partir el character vector en palabras\nsIn <- \"Los voceros del desastre llevan años señalando con el dedo el abismo hacia el que caminan sin remedio muchos de los placeres y muchas de las antiguas formas de la civilización anterior a internet y a los teléfonos inteligentes y las tabletas y demás. \"\nstrsplit(sIn, split=\" \")\n\n#Importar el texto a R\npostdigital.v <- scan(\"/Users/clockwork/Downloads/librodigital.txt\", what=\"character\", sep=\"\\n\")\npostdigital.v\n\n#juntar todos los parrafos en uno solo\narticulos.v <- paste(postdigital.v, collapse=\" \")\nlength(articulos.v)\n#Convertir todos los articulos en minuscula\narticulos.minus.v <- tolower(articulos.v)\narticulos.minus.v[1]\n#Separar todo en una lista de palabras\narticulos.palabras.l <- strsplit(articulos.minus.v, \"\\\\W\")\narticulos.palabras.l\n#Denota la estructura de la lista\nstr(articulos.palabras.l)\n\n# Convierte la lista a un character String\narticulos.palabras.v <- unlist(articulos.palabras.l) \nclass(articulos.palabras.v)\n\n#Cuales son las posiciones que no están en blanco\nno.enBlanco.v <- which(articulos.palabras.v!=\"\")\nno.enBlanco.v \n\n#quita los espacios en blanco y sobreescribe en articulos.palabras.v\narticulos.palabras.v <- articulos.palabras.v[no.enBlanco.v]\narticulos.palabras.v [4897:5678]\n#cuales ubicaciones tienen la palabra digital\nwhich(articulos.palabras.v==\"digital\")\n\n#el conteo de la frecuencia de veces que aparece la palabra digital\ndigital.ocurrencias.v<-length(articulos.palabras.v[which(articulos.palabras.v==\"digital\")])\n\n#el numero total de palabras \npalabras.totales.v<-length(articulos.palabras.v)\n\n#cuantas veces aparece la palabra digital %\n(digital.ocurrencias.v/palabras.totales.v)*100\n\n#Número de palabras con una sola ocurrencia\nlength(unique(articulos.palabras.v))\n\n#Organizar la tabla por orden de ocurrencia\narticulos.frec.t<-sort(table(articulos.palabras.v), decreasing = TRUE)\n\n#Cuantas veces aparece la palabra digital + digitales vs cuantas veces impreso + papel\narticulos.palabras.digital<-articulos.frec.t[\"digital\"]+articulos.frec.t[\"digitales\"]\narticulos.palabras.impreso<-articulos.frec.t[\"impresos\"]+articulos.frec.t[\"papel\"]+articulos.frec.t[\"impreso\"]+articulos.frec.t[\"impresa\"]+articulos.frec.t[\"impresas\"]\n\n#Cuantas veces está digital mas que impreso \narticulos.palabras.digital/articulos.palabras.impreso\n\n#gráfico \nplot(articulos.frec.t[19:60], type=\"b\",\n     xlab=\"de la 19 a la 20\", ylab=\"Percentage of Full Text\", xaxt =\"n\")\naxis(1,1:42, labels=names(articulos.frec.t[19:60]))\n\n",
+    "created" : 1497741578605.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3263087697",
+    "id" : "9F6C6A71",
+    "lastKnownWriteTime" : 1497935772,
+    "last_content_update" : 1497935772105,
+    "path" : "~/Documents/Articulos Tesis/Text analisis.R",
+    "project_path" : "Text analisis.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
